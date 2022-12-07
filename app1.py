@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import pickle
 import nltk
+import streamlit as st
 nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
@@ -10,10 +11,8 @@ porter = PorterStemmer()
 classifier = pickle.load(open('model1.pkl', 'rb'))
 cv = pickle.load(open('cv1.pkl','rb'))
 
-app = Flask(__name__)
-
 def main():
-    return render_template('index.html')
+    st.markdown(index.html)
 
 def predict():
     if (request.method == 'POST'):
@@ -40,9 +39,9 @@ def predict():
             output = "Positive Review"        
 
 
-        return render_template('index.html',prediction_text= output)
+        st.markdown(index.html,prediction_text= output)
     else:
-        return render_template('index.html')    
+        st.markdown(index.html) 
 
 if __name__ == '__main__':
       main()
